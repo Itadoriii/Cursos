@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Aprendizaje</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2d2d3a;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background-color: #1a1a24;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-items {
+            margin-top: 30px;
+        }
+
+        .nav-item {
+            padding: 12px 15px;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-item:hover {
+            background-color: #3d3d4a;
+        }
+
+        .nav-item.active {
+            background-color: #3d3d4a;
+        }
+
+        .nav-item i {
+            margin-right: 10px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .user-greeting {
+            background-color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .user-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .tablero {
+            margin-bottom: 30px;
+        }
+
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 250px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 150px;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .course-title {
+            color: #2d2d3a;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .course-status {
+            color: #4a90e2;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+
+        .course-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .action-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .logout {
+            margin-top: auto;
+            padding: 12px 15px;
+            color: #888;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <!-- Logo placeholder -->
+            GM
+        </div>
+        <div class="nav-items">
+            <div class="nav-item active">
+                <i>📚</i>
+                Tutor online
+            </div>
+            <div class="nav-item">
+                <i>📊</i>
+                Mediciones
+            </div>
+            <div class="nav-item">
+                <i>🎓</i>
+                Certificados
+            </div>
+        </div>
+        <div class="logout">
+            Cerrar Sesión
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Tablero</h1>
+            <div class="user-greeting">
+                Hola, $Usuario
+                <img src="/api/placeholder/30/30" alt="Usuario" class="user-avatar">
+            </div>
+        </div>
+
+        <div class="tablero">
+            <div class="course-card">
+                <img src="/api/placeholder/250/150" alt="Curso" class="course-image">
+                <div class="course-title">INF89104-412-TEORIA-2023-VE</div>
+                <div class="course-status">SIEMPRE DISPONIBLE</div>
+                <div class="course-actions">
+                    <img src="/api/placeholder/24/24" alt="Ver" class="action-icon">
+                    <img src="/api/placeholder/24/24" alt="Editar" class="action-icon">
+                    <img src="/api/placeholder/24/24" alt="Compartir" class="action-icon">
+                    <img src="/api/placeholder/24/24" alt="Más" class="action-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
