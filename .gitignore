@@ -1,0 +1,10 @@
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de configuración de VSCode
+.vscode/
+
+# Archivos estáticos de Django
+staticfiles/
