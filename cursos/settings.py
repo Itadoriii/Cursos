@@ -141,3 +141,13 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_REDIRECT_URL = '/admin/'
 LOGIN_URL = '/login/' 
+
+
+
+STATIC_URL = '/static/'  # URL base para archivos estáticos
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Asegura que Django busque aquí los archivos CSS/JS
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
