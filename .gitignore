@@ -6,6 +6,6 @@ __pycache__/
 # Archivos de configuración de VSCode
 .vscode/
 # Entorno virtual de Python
-.venv/
+venv/
 # Archivos estáticos de Django
 staticfiles/
