@@ -17,6 +17,17 @@ def admin_view(request):
 @login_required
 def user_view(request):
     return render(request, 'user.html')
+def curso_view(request):
+    return render(request, 'curso.html')
+def curso2_view(request):
+    return render(request, 'curso2.html')
+def curso3_view(request):
+    return render(request, 'curso3.html')
+def curso4_view(request):
+    return render(request, 'curso4.html')
+def curso5_view(request):
+    return render(request, 'curso5.html')
+
 
 
 from django.shortcuts import render, redirect
