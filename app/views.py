@@ -13,7 +13,7 @@ def register_view(request):
 
 @login_required
 def admin_view(request):
-    return render(request, 'admin.html')
+    return render(request, 'administracion.html')
 @login_required
 def user_view(request):
     return render(request, 'user.html')
@@ -53,7 +53,7 @@ def login_view(request):
                 login(request, user)
                 # Redirige a la página principal u otra según el tipo de usuario
                 if user.is_superuser:
-                    return redirect('admin')  # Redirige a la página de admin.html
+                    return redirect('administracion')  # Redirige a la página de admin.html
                 else:
                     return redirect('user')  # Redirige a la página de user.html
             else:
