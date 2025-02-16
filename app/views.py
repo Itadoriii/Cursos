@@ -62,5 +62,41 @@ def login_view(request):
             messages.error(request, 'No existe un usuario con ese email.')
     return render(request, 'login.html')
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
+
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
+
+def register_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        print("Datos recibidos:", name, email, password)  # Para depuración
+
+        # Verificar si todos los campos tienen datos
+        if not name or not email or not password:
+            messages.error(request, 'Todos los campos son obligatorios.')
+            return render(request, 'register.html')
+
+        # Verificar si el email ya está registrado
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Este correo ya está registrado.')
+        else:
+            # Crear el usuario (no administrador)
+            username = email.split('@')[0]  # Puedes usar otra lógica para el username
+            user = User.objects.create_user(username=username, password=password, email=email, first_name=name)
+            user.save()
+
+            print("Usuario creado:", user)  # Para depuración
+            messages.success(request, 'Cuenta creada con éxito. Ahora puedes iniciar sesión.')
+            return redirect('login')
+    
+    return render(request, 'register.html')
+
 
 
