@@ -98,5 +98,14 @@ def register_view(request):
     
     return render(request, 'register.html')
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Compra
+
+@login_required
+def user_view(request):
+    # Obtener los cursos comprados por el usuario actual
+    compras = Compra.objects.filter(usuario=request.user).select_related('curso')
+    return render(request, 'user.html', {'compras': compras})
 
 

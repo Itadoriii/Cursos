@@ -145,7 +145,6 @@
 <body>
     <div class="sidebar">
         <div class="logo">
-            <!-- Logo placeholder -->
             GM
         </div>
         <div class="nav-items">
@@ -163,7 +162,7 @@
             </div>
         </div>
         <div class="logout">
-            Cerrar Sesión
+            <a href=>Cerrar Sesión</a>
         </div>
     </div>
 
@@ -171,23 +170,29 @@
         <div class="header">
             <h1>Tablero</h1>
             <div class="user-greeting">
-                Hola, $Usuario
+                Hola, {{ request.user.username }}
                 <img src="/api/placeholder/30/30" alt="Usuario" class="user-avatar">
             </div>
         </div>
 
         <div class="tablero">
-            <div class="course-card">
-                <img src="/api/placeholder/250/150" alt="Curso" class="course-image">
-                <div class="course-title">INF89104-412-TEORIA-2023-VE</div>
-                <div class="course-status">SIEMPRE DISPONIBLE</div>
-                <div class="course-actions">
-                    <img src="/api/placeholder/24/24" alt="Ver" class="action-icon">
-                    <img src="/api/placeholder/24/24" alt="Editar" class="action-icon">
-                    <img src="/api/placeholder/24/24" alt="Compartir" class="action-icon">
-                    <img src="/api/placeholder/24/24" alt="Más" class="action-icon">
+            {% if compras %}
+                {% for compra in compras %}
+                <div class="course-card">
+                    <img src="/api/placeholder/250/150" alt="Curso" class="course-image">
+                    <div class="course-title">{{ compra.curso.titulo }}</div>
+                    <div class="course-status">SIEMPRE DISPONIBLE</div>
+                    <div class="course-actions">
+                        <img src="/api/placeholder/24/24" alt="Ver" class="action-icon">
+                        <img src="/api/placeholder/24/24" alt="Editar" class="action-icon">
+                        <img src="/api/placeholder/24/24" alt="Compartir" class="action-icon">
+                        <img src="/api/placeholder/24/24" alt="Más" class="action-icon">
+                    </div>
                 </div>
-            </div>
+                {% endfor %}
+            {% else %}
+                <p>No has comprado ningún curso aún.</p>
+            {% endif %}
         </div>
     </div>
 </body>
