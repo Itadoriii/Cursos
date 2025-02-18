@@ -100,6 +100,7 @@
             padding: 15px;
             width: 250px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
         }
 
         .course-image {
@@ -140,6 +141,39 @@
             color: #888;
             cursor: pointer;
         }
+
+        /* Estilos para el detalle del curso */
+        .course-details {
+            display: none;
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .course-details h2 {
+            margin-bottom: 20px;
+        }
+
+        .course-details ul {
+            list-style: none;
+        }
+
+        .course-details ul li {
+            margin-bottom: 15px;
+        }
+
+        .course-details ul li h4 {
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+
+        .course-details ul li a {
+            color: #4a90e2;
+        }
+
+        iframe {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -162,7 +196,7 @@
             </div>
         </div>
         <div class="logout">
-            <a href=>Cerrar Sesión</a>
+            <a href="#">Cerrar Sesión</a>
         </div>
     </div>
 
@@ -178,22 +212,66 @@
         <div class="tablero">
             {% if compras %}
                 {% for compra in compras %}
-                <div class="course-card">
-                    <img src="/api/placeholder/250/150" alt="Curso" class="course-image">
-                    <div class="course-title">{{ compra.curso.titulo }}</div>
-                    <div class="course-status">SIEMPRE DISPONIBLE</div>
-                    <div class="course-actions">
-                        <img src="/api/placeholder/24/24" alt="Ver" class="action-icon">
-                        <img src="/api/placeholder/24/24" alt="Editar" class="action-icon">
-                        <img src="/api/placeholder/24/24" alt="Compartir" class="action-icon">
-                        <img src="/api/placeholder/24/24" alt="Más" class="action-icon">
+                    <div class="course-card" data-curso-id="{{ compra.curso.id }}">
+                        <img src="/api/placeholder/250/150" alt="Curso" class="course-image">
+                        <div class="course-title">{{ compra.curso.titulo }}</div>
+                        <div class="course-status">SIEMPRE DISPONIBLE</div>
                     </div>
-                </div>
                 {% endfor %}
             {% else %}
                 <p>No has comprado ningún curso aún.</p>
             {% endif %}
         </div>
+
+        <!-- Sección para los detalles del curso -->
+        <div class="course-details" id="course-details">
+            <h2 id="detalle-titulo"></h2>
+            <p id="detalle-descripcion"></p>
+            <h3>Contenido del Curso</h3>
+            <ul id="detalle-contenidos"></ul>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.course-card').click(function() {
+                var cursoId = $(this).data('curso-id');
+
+                $.ajax({
+                    url: '',  // Cambia la URL si es necesario
+                    type: 'GET',
+                    data: {
+                        curso_id: cursoId
+                    },
+                    success: function(data) {
+                        // Actualizamos los detalles del curso
+                        $('#detalle-titulo').text(data.titulo);
+                        $('#detalle-descripcion').text(data.descripcion);
+                        $('#detalle-contenidos').empty();
+
+                        data.contenidos.forEach(function(contenido) {
+                            var item = '<li><h4>' + contenido.titulo + '</h4>';
+                            item += '<p>' + contenido.descripcion + '</p>';
+
+                            if (contenido.archivo) {
+                                item += '<a href="' + contenido.archivo + '" download>Descargar Archivo</a><br>';
+                            }
+
+                            if (contenido.video_url) {
+                                item += '<iframe width="560" height="315" src="' + contenido.video_url + '" frameborder="0" allowfullscreen></iframe>';
+                            }
+
+                            item += '</li>';
+                            $('#detalle-contenidos').append(item);
+                        });
+
+                        // Mostrar los detalles
+                        $('#course-details').slideDown();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

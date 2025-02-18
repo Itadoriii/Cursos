@@ -102,10 +102,26 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Compra
 
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from .models import Compra, Curso
+
 @login_required
 def user_view(request):
-    # Obtener los cursos comprados por el usuario actual
     compras = Compra.objects.filter(usuario=request.user).select_related('curso')
-    return render(request, 'user.html', {'compras': compras})
 
+    # Si se envía un curso_id por AJAX, devolvemos los detalles en JSON
+    curso_id = request.GET.get('curso_id')
+    if curso_id:
+        curso = get_object_or_404(Curso, id=curso_id)
+        contenidos = curso.contenidos.all().values('titulo', 'descripcion', 'archivo', 'video_url')
+        data = {
+            'titulo': curso.titulo,
+            'descripcion': curso.descripcion,
+            'contenidos': list(contenidos)
+        }
+        return JsonResponse(data)
+
+    return render(request, 'user.html', {'compras': compras})
 
