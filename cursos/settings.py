@@ -119,7 +119,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -136,6 +136,7 @@ MESSAGE_TAGS = {
 }
 
 AUTHENTICATION_BACKENDS = [
+    "app.backends.EmailBackend",
     'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -144,7 +145,7 @@ LOGIN_URL = '/login/'
 
 
 
-STATIC_URL = '/static/'  # URL base para archivos estáticos
+STATIC_URL = '/staticfiles/'  # URL base para archivos estáticos
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Asegura que Django busque aquí los archivos CSS/JS
@@ -152,3 +153,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEBUG = True
+
+
+AUTH_USER_MODEL = "app.UsuarioPersonalizado"  # Reemplaza "tu_app" con el nombre real de tu aplicación

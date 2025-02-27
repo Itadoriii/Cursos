@@ -20,29 +20,72 @@
                         <!-- Formulario -->
                         <div class="col-md-6 p-5">
                             <h3 class="mb-4 text-center">Registro</h3>
-                            <form method="post">
+                            <form method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
+                                
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nombre completo</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Tu nombre" required>
+                                    <label for="id_first_name" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="id_first_name" name="nombre" placeholder="Tu nombre" required>
                                 </div>
-                            
+
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@gmail.com" required>
+                                    <label for="id_last_name" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="id_last_name" name="apellido" placeholder="Tu apellido" required>
                                 </div>
+
+                             
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="••••••••" required>
+                                    <label for="id_email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="id_email" name="email" placeholder="ejemplo@gmail.com" required>
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="id_password1" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="id_password1" name="password1" placeholder="••••••••" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="id_password2" class="form-label">Confirmar Contraseña</label>
+                                    <input type="password" class="form-control" id="id_password2" name="password2" placeholder="••••••••" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="id_direccion" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="id_direccion" name="id_direccion" placeholder="Tu dirección" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="id_telefono" class="form-label">Teléfono</label>
+                                    <input type="text" class="form-control" id="id_telefono" name="telefono" placeholder="+56 9 1234 5678" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="id_archivo_adjunto" class="form-label">Documento Profesional</label>
+                                    <input type="file" class="form-control" id="id_archivo_adjunto" name="archivo_adjunto" required>
+                                </div>
+
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                                    <button type="submit" class="btn btn-primary">Registrarse</button>
                                 </div>
+
                                 <div class="text-center mt-3">
                                     <small>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión</a></small>
                                 </div>
                             </form>
-                            
+                            {% if form.errors %}
+                                <div class="alert alert-danger mt-3">
+                                    <ul>
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+
+
+
                         </div>
                     </div>
                 </div>

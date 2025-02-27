@@ -9,3 +9,6 @@ __pycache__/
 venv/
 # Archivos estáticos de Django
 staticfiles/
+
+archivos/
+contenidos/

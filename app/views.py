@@ -11,9 +11,19 @@ def login_view(request):
 def register_view(request):
     return render(request, 'register.html')
 
-@login_required
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
+from django.http import HttpResponseForbidden
+
+# Decorador para verificar si el usuario es staff o administrador
+def is_admin_or_staff(user):
+    return user.is_staff or user.is_superuser
+
+@user_passes_test(is_admin_or_staff, login_url='error')
 def admin_view(request):
+    # Tu lógica para la vista de administración
     return render(request, 'administracion.html')
+
 @login_required
 def user_view(request):
     return render(request, 'user.html')
@@ -27,6 +37,8 @@ def curso4_view(request):
     return render(request, 'curso4.html')
 def curso5_view(request):
     return render(request, 'curso5.html')
+def error_view(request):
+    return render(request, 'error.html')
 
 
 
@@ -35,68 +47,54 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.models import User
 
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import get_user_model
+
+User = get_user_model()  # ✅ Obtiene el modelo correcto de usuario
+
 def login_view(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')  # Obtén el email del formulario
-        password = request.POST.get('password')  # Obtén la contraseña del formulario
-
-        # Intentar obtener el usuario con el email
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            user = None
-
-        # Si el usuario existe, autenticarlo
+    if request.method == "POST":
+        email = request.POST["email"]
+        password = request.POST["password"]
+        user = authenticate(request, email=email, password=password)  # 👈 Cambiamos username por email
         if user is not None:
-            user = authenticate(request, username=user.username, password=password)
-            if user is not None:
-                login(request, user)
-                # Redirige a la página principal u otra según el tipo de usuario
-                if user.is_superuser:
-                    return redirect('administracion')  # Redirige a la página de admin.html
-                else:
-                    return redirect('user')  # Redirige a la página de user.html
-            else:
-                messages.error(request, 'Credenciales incorrectas, intenta nuevamente.')
+            login(request, user)
+            return redirect("user")  # Redirige a la página principal
         else:
-            messages.error(request, 'No existe un usuario con ese email.')
-    return render(request, 'login.html')
+            return render(request, "login.html", {"error": "Email o contraseña incorrectos"})
+
+    return render(request, "login.html")
 
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-
 from django.shortcuts import render, redirect
+from django.contrib.auth import get_user_model
+from django.contrib.auth import login
+from .forms import RegistroUsuarioForm  # Asegúrate de que el formulario esté bien definido
+
+User = get_user_model()
+
+# views.py
+from django.shortcuts import render, redirect
+from .forms import RegistroUsuarioForm
 from django.contrib import messages
-from django.contrib.auth.models import User
 
 def register_view(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-
-        print("Datos recibidos:", name, email, password)  # Para depuración
-
-        # Verificar si todos los campos tienen datos
-        if not name or not email or not password:
-            messages.error(request, 'Todos los campos son obligatorios.')
-            return render(request, 'register.html')
-
-        # Verificar si el email ya está registrado
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'Este correo ya está registrado.')
-        else:
-            # Crear el usuario (no administrador)
-            username = email.split('@')[0]  # Puedes usar otra lógica para el username
-            user = User.objects.create_user(username=username, password=password, email=email, first_name=name)
-            user.save()
-
-            print("Usuario creado:", user)  # Para depuración
-            messages.success(request, 'Cuenta creada con éxito. Ahora puedes iniciar sesión.')
+        form = RegistroUsuarioForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Registro exitoso! Ahora puedes iniciar sesión.')
             return redirect('login')
-    
-    return render(request, 'register.html')
+        else:
+            messages.error(request, 'Hubo un error con el registro. Intenta nuevamente.')
+    else:
+        form = RegistroUsuarioForm()
+
+    return render(request, 'register.html', {'form': form})
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
