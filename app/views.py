@@ -21,7 +21,7 @@ def is_admin_or_staff(user):
 
 @user_passes_test(is_admin_or_staff, login_url='error')
 def admin_view(request):
-    # Tu lógica para la vista de administración
+    # Tu lógica para la vista de administración  
     return render(request, 'administracion.html')
 
 @login_required
@@ -123,3 +123,34 @@ def user_view(request):
 
     return render(request, 'user.html', {'compras': compras})
 
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponseForbidden
+from .models import UsuarioPersonalizado  # Usa tu modelo personalizado
+
+@user_passes_test(is_admin_or_staff)
+def admin_view(request):
+    # Obtener usuarios no activos
+    usuarios_no_activos = UsuarioPersonalizado.objects.filter(is_active=False)
+    
+    # Puedes añadir el archivo adjunto aquí si lo necesitas
+    # Asegúrate de que el modelo de UsuarioPersonalizado tenga un campo de archivo adjunto
+    
+    return render(request, 'administracion.html', {'usuarios_no_activos': usuarios_no_activos})
+
+from django.shortcuts import redirect, get_object_or_404
+from .models import UsuarioPersonalizado  # Usa tu modelo personalizado
+from django.contrib.auth.decorators import user_passes_test
+
+@user_passes_test(is_admin_or_staff)
+def cambiar_estado_usuario(request, usuario_id):
+    # Cambiar a UsuarioPersonalizado
+    usuario = get_object_or_404(UsuarioPersonalizado, id=usuario_id)
+    
+    # Cambiar el estado de activo a True
+    if not usuario.is_active:
+        usuario.is_active = True
+        usuario.save()
+    
+    return redirect('administracion')

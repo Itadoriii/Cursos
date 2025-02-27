@@ -156,3 +156,5 @@ DEBUG = True
 
 
 AUTH_USER_MODEL = "app.UsuarioPersonalizado"  # Reemplaza "tu_app" con el nombre real de tu aplicación
+
+

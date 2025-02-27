@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Administración</title>
+    <!-- Vincula Bootstrap desde la CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    AKI SOY EL ADMIN CTM
+    <div class="container mt-4">
+        <h1 class="mb-4">Lista de Usuarios No Activos</h1>
+        
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Archivo Adjunto</th>
+                    <th>Cambiar a Activo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios_no_activos %}
+                <tr>
+                    <td>{{ usuario.nombre }}</td> <!-- Modifiqué el campo de 'username' por 'nombre' -->
+                    <td>{{ usuario.email }}</td>
+                    <td>
+                        {% if usuario.archivo_adjunto %}
+                        <a href="{{ usuario.archivo_adjunto.url }}" target="_blank" class="btn btn-info btn-sm">Ver archivo</a>
+                        {% else %}
+                            <span class="text-muted">No hay archivo</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="{% url 'cambiar_estado_usuario' usuario.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm">Cambiar a Activo</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
