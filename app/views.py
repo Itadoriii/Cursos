@@ -49,19 +49,27 @@ from django.contrib.auth.models import User
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import get_user_model
 
-User = get_user_model()  # ✅ Obtiene el modelo correcto de usuario
+User = get_user_model()  # Obtiene el modelo de usuario personalizado
 
 def login_view(request):
     if request.method == "POST":
-        email = request.POST["email"]
-        password = request.POST["password"]
-        user = authenticate(request, email=email, password=password)  # 👈 Cambiamos username por email
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        user = authenticate(request, email=email, password=password)  # Autenticar por email
+
         if user is not None:
+            if not user.is_active:
+                return redirect("error")  # Usuarios inactivos van a /error
+            
             login(request, user)
-            return redirect("user")  # Redirige a la página principal
+            
+            if user.is_staff:  # Si es admin, va a /administracion
+                return redirect("administracion")  
+            else:  # Usuarios normales van a /user
+                return redirect("user")  
+
         else:
             return render(request, "login.html", {"error": "Email o contraseña incorrectos"})
 
