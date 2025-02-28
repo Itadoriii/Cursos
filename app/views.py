@@ -27,6 +27,8 @@ def admin_view(request):
 @login_required
 def user_view(request):
     return render(request, 'user.html')
+
+
 def curso_view(request):
     return render(request, 'curso.html')
 def curso2_view(request):

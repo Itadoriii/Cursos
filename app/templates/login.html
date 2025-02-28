@@ -35,6 +35,13 @@
                                 <div class="text-center mt-3">
                                     <small>¿No tienes cuenta? <a href="{% url 'register' %}">Regístrate</a></small>
                                 </div>
+                                {% if messages %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {% for message in messages %}
+                                            <p>{{ message }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
                             </form>
                             
                         </div>
@@ -43,13 +50,7 @@
             </div>
         </div>
     </div>
-    {% if messages %}
-    <div class="alert alert-danger" role="alert">
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    </div>
-{% endif %}
+    
 
 </body>
 </html>

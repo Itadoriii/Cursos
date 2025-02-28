@@ -15,7 +15,7 @@
                     <div class="row g-0">
                         <!-- Imagen a la derecha -->
                         <div class="col-md-6 d-none d-md-block">
-                            <img src="https://via.placeholder.com/500x600" alt="Imagen de Fondo" class="img-fluid rounded-start h-100" style="object-fit: cover;">
+                            <!-- Imagen a la derecha<img src="https://via.placeholder.com/500x600" alt="Imagen de Fondo" class="img-fluid rounded-start h-100" style="object-fit: cover;">-->
                         </div>
                         <!-- Formulario -->
                         <div class="col-md-6 p-5">
@@ -71,8 +71,7 @@
                                 <div class="text-center mt-3">
                                     <small>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión</a></small>
                                 </div>
-                            </form>
-                            {% if form.errors %}
+                                {% if form.errors %}
                                 <div class="alert alert-danger mt-3">
                                     <ul>
                                         {% for field in form %}
@@ -83,6 +82,11 @@
                                     </ul>
                                 </div>
                             {% endif %}
+
+
+
+                            </form>
+                            
 
 
 
