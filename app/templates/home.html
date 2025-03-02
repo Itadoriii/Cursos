@@ -3,8 +3,68 @@
 <head>
     <title>Cursos</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        /* Justificar el texto */
+        .justify-text p {
+            text-align: justify;
+        }
+
+        /* Centrar imágenes */
+        .center-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        /* Estilo para el recuadro rosa pastel semitransparente */
+        .highlight-box {
+            background-color: rgba(255, 182, 193, 0.5); /* Rosa pastel semitransparente */
+            padding: 20px; /* Espaciado interno */
+            border-radius: 10px; /* Bordes redondeados */
+            margin-top: 20px; /* Margen superior */
+            margin-bottom: 20px; /* Margen inferior */
+        }
+        .btn-primary{
+          background-color:rgba(255, 182, 193, 0.5) ;
+          border-color: rgb(255, 182, 193);
+          
+        }
+        .btn-primary:hover{
+          background-color:rgb(255, 182, 193);
+          border-color: rgb(255, 182, 193);
+        }
+        .btn-login {
+            border: 1px solid rgb(255, 182, 193); /* Borde rosa pastel */
+            border-radius: 20px;
+            padding: 5px 15px;
+            background-color: rgba(255, 182, 193, 0.5); /* Fondo rosa pastel semitransparente */
+            font-weight: bold;
+            color: black; /* Texto negro */
+        }
+        .btn-login:hover {
+            background-color: rgb(255, 182, 193); /* Rosa pastel sólido al pasar el mouse */
+            color: black; /* Texto negro */
+        }
+        .navbar .nav-link {
+            color: black; /* Texto negro */
+        }
+
+        .navbar .nav-link:hover {
+            color: rgb(255, 182, 193); /* Rosa pastel al pasar el mouse */
+        }
+
+        .badge {
+          background-color:rgb(255, 182, 193);
+          border-color: rgb(255, 182, 193);
+          
+
+        }
+        
+    </style>
+    
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-light">
@@ -45,16 +105,16 @@
                     <div class="row gx-0">
                         <div class="col-lg-6 col-xl-5 py-lg-5">
                             <div class="p-4 p-md-5">
-                                <div class="badge bg-primary bg-gradient rounded-pill mb-2">Cursos</div>
-                                <div class="h2 fw-bolder">Academia online? o nombre de la empresa</div>
+                                <div class="badge  bg-gradient rounded-pill mb-2">Cursos</div>
+                                <div class="h2 fw-bolder">Cursos online disponibles</div>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique delectus ab doloremque, qui doloribus ea officiis...</p>
-                                <a class="stretched-link text-decoration-none" href="#!">
-                                    Read more
+                                <a class="stretched-link text-decoration-none " href="#!">
+                                    Conoce más
                                     <i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('https://dummyimage.com/700x350/343a40/6c757d')"></div></div>
+                        <div class="col-lg-6 col-xl-7"><img src="https://i.imgur.com/mgYCQfN.png" alt="..."></div>
                     </div>
                 </div>
             </div>
@@ -69,11 +129,11 @@
             <div class="row gx-5">
                 <div class="col-lg-4 mb-5">
                     <div class="card h-100 shadow border-0">
-                        <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                        <img class="card-img-top" src="https://i.imgur.com/ik7zjjE.png" alt="..." />
                         <div class="card-body p-4">
-                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">Area del curso</div>
-                            <a class="text-decoration-none link-dark stretched-link" href="curso"><div class="h5 card-title mb-3">Nombre del curso</div></a>
-                            <p class="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <div class="badge bg-gradient rounded-pill mb-2">Plasmapen</div>
+                            <a class="text-decoration-none link-dark stretched-link" href="curso"><div class="h5 card-title mb-3">Capacitación Intensiva en Plasmapen para Ginecoestética</div></a>
+                            <p class="card-text mb-0">Curso intensivo acerca del uso de plasmapen, dispositivo de plasma para tratar acrocordones, condilomas y otras lesiones, con un enfoque teórico-práctico.</p>
                         </div>
                         <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                             <div class="d-flex align-items-end justify-content-between">
@@ -92,7 +152,7 @@
                     <div class="card h-100 shadow border-0">
                         <img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
                         <div class="card-body p-4">
-                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">Area</div>
+                            <div class="badge  bg-gradient rounded-pill mb-2">Area</div>
                             <a class="text-decoration-none link-dark stretched-link" href="curso2"><div class="h5 card-title mb-3">Nombre</div></a>
                             <p class="card-text mb-0">This text is a bit longer to illustrate the adaptive height of each card. Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
@@ -114,7 +174,7 @@
                     <div class="card h-100 shadow border-0">
                         <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
                         <div class="card-body p-4">
-                            <div class="badge bg-primary bg-gradient rounded-pill mb-2">Area</div>
+                            <div class="badge  bg-gradient rounded-pill mb-2">Area</div>
                             <a class="text-decoration-none link-dark stretched-link" href="curso3"><div class="h5 card-title mb-3">The last blog post title is a little bit longer than the others</div></a>
                             <p class="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </div>
@@ -135,7 +195,7 @@
                   <div class="card h-100 shadow border-0">
                       <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
                       <div class="card-body p-4">
-                          <div class="badge bg-primary bg-gradient rounded-pill mb-2">Area</div>
+                          <div class="badge  bg-gradient rounded-pill mb-2">Area</div>
                           <a class="text-decoration-none link-dark stretched-link" href="curso4"><div class="h5 card-title mb-3">Nombre</div></a>
                           <p class="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
                       </div>
@@ -156,7 +216,7 @@
                 <div class="card h-100 shadow border-0">
                     <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
                     <div class="card-body p-4">
-                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Area</div>
+                        <div class="badge bg-gradient rounded-pill mb-2">Area</div>
                         <a class="text-decoration-none link-dark stretched-link" href="curso5"><div class="h5 card-title mb-3">Nombre</div></a>
                         <p class="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
