@@ -39,6 +39,10 @@ def curso4_view(request):
     return render(request, 'curso4.html')
 def curso5_view(request):
     return render(request, 'curso5.html')
+def curso6_view(request):
+    return render(request, 'curso6.html')
+def curso7_view(request):
+    return render(request, 'curso7.html')
 def error_view(request):
     return render(request, 'error.html')
 
