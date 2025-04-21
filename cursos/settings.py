@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-s%skj---&fg97c)r*^l@n5t37f57+3rq=n$a-wq$z_4)2(n6#*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sebastiancastro.cl', 'www.sebastiancastro.cl', '200.35.159.81']
+
 
 
 # Application definition
@@ -161,3 +162,4 @@ AUTH_USER_MODEL = "app.UsuarioPersonalizado"  # Reemplaza "tu_app" con el nombre
 MEDIA_URL = '/archivos/'
 MEDIA_ROOT = BASE_DIR / 'archivos'
 
+DEBUG = False
