@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-s%skj---&fg97c)r*^l@n5t37f57+3rq=n$a-wq$z_4)2(n6#*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sebastiancastro.cl', 'www.sebastiancastro.cl', '200.35.159.81']
+ALLOWED_HOSTS = ['sebastiancastro.cl', 'www.sebastiancastro.cl', '200.35.159.81','127.0.0.1']
 
 
 
@@ -106,9 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -117,14 +114,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -147,26 +136,28 @@ LOGIN_URL = '/login/'
 
 
 
-STATIC_URL = '/staticfiles/'  # URL base para archivos estáticos
+  # URL base para archivos estáticos
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # Asegura que Django busque aquí los archivos CSS/JS
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEBUG = True
 
 
 AUTH_USER_MODEL = "app.UsuarioPersonalizado"  # Reemplaza "tu_app" con el nombre real de tu aplicación
 
 
-MEDIA_URL = '/archivos/'
-MEDIA_ROOT = BASE_DIR / 'archivos'
 
-DEBUG = False
+
 
 CSRF_TRUSTED_ORIGINS = [
     'https://sebastiancastro.cl',
     'https://www.sebastiancastro.cl',
     'https://200.35.159.81',
 ]
+STATIC_URL = '/staticfiles/'
+STATIC_ROOT = '/var/www/Cursos/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/var/www/Cursos/media/'
