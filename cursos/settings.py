@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
 ]
 
 ROOT_URLCONF = 'cursos.urls'
@@ -163,3 +164,9 @@ MEDIA_URL = '/archivos/'
 MEDIA_ROOT = BASE_DIR / 'archivos'
 
 DEBUG = False
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://sebastiancastro.cl',
+    'https://www.sebastiancastro.cl',
+    'https://200.35.159.81',
+]
