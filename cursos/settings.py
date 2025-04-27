@@ -163,9 +163,9 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # SOLO si tienes assets de desarrollo aquí
+    os.path.join(BASE_DIR, 'staticfiles'),  # SOLO si tienes assets de desarrollo aquí
 ]
 
-STATIC_ROOT = '/var/www/Cursos/staticfiles/'  # Esta es la carpeta FINAL donde Django los copia
+STATIC_ROOT = '/var/www/Cursos/static/'  # Esta es la carpeta FINAL donde Django los copia
 
 
