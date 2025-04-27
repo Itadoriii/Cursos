@@ -153,15 +153,18 @@ CSRF_TRUSTED_ORIGINS = [
     'https://200.35.159.81',
 ]
 
-STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/Cursos/media/'
 
 
 
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Solo tu carpeta de desarrollo
+    os.path.join(BASE_DIR, 'staticfiles'),  # SOLO si tienes assets de desarrollo aquí
 ]
 
-STATIC_ROOT = '/var/www/Cursos/static/'  # Donde Django copiará todo para producción
+STATIC_ROOT = '/var/www/Cursos/static/'  # Esta es la carpeta FINAL donde Django los copia
+
+
