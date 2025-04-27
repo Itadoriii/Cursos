@@ -138,7 +138,7 @@ LOGIN_URL = '/login/'
 
 
 
-DEBUG = False
+DEBUG = True
 
 
 AUTH_USER_MODEL = "app.UsuarioPersonalizado"  # Reemplaza "tu_app" con el nombre real de tu aplicación
@@ -169,3 +169,5 @@ STATICFILES_DIRS = [
 STATIC_ROOT = '/var/www/Cursos/static/'  # Esta es la carpeta FINAL donde Django los copia
 
 
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
