@@ -158,8 +158,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/Cursos/media/'
 
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-STATIC_URL = '/staticfiles/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),  # SOLO si tienes assets de desarrollo aquí
