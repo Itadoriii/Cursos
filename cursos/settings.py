@@ -138,9 +138,7 @@ LOGIN_URL = '/login/'
 
   # URL base para archivos estáticos
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Asegura que Django busque aquí los archivos CSS/JS
-]
+
 
 DEBUG = True
 
@@ -156,8 +154,16 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.sebastiancastro.cl',
     'https://200.35.159.81',
 ]
-STATIC_URL = '/staticfiles/'
-STATIC_ROOT = '/var/www/Cursos/static/'
+
+STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/Cursos/media/'
+
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Solo tu carpeta de desarrollo
+]
+
+STATIC_ROOT = '/var/www/Cursos/static/'  # Donde Django copiará todo para producción
